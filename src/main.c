@@ -108,7 +108,7 @@ main(int argc, char** argv)
     for (i = 2; argv[i]; ++i)
     {
 	int result;
-	
+
 	printf("  %s\n", argv[i]);
 	result = bdf2_load(font, argv[i]);
     }
