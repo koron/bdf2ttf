@@ -2,7 +2,7 @@
 /*
  * infont.c - Print Win32 font information.
  *
- * Written By:  MURAOKA Taro <koron@tka.att.ne.jp>
+ * Written By:  MURAOKA Taro <koron.kaoriya@gmail.com>
  * Last Change:	06-Jun-2003.
  */
 #define WIN32_LEAN_AND_MEAN

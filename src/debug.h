@@ -2,8 +2,8 @@
 /*
  * debug.h -
  *
- * Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
- * Last Change:	03-Aug-2003.
+ * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
+ * Last Change:	06-Apr-2015.
  */
 
 #ifndef DEBUG_H

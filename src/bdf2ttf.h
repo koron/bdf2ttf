@@ -2,8 +2,8 @@
 /*
  * bdf2ttf.h - BDF to TTF converter.
  *
- * Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
- * Last Change: 05-Aug-2003.
+ * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
+ * Last Change: 06-Apr-2015.
  */
 #ifndef BDF2TTF_H
 #define BDF2TTF_H

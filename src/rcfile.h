@@ -1,7 +1,7 @@
 /* vim:set ts=8 sts=4 sw=4 tw=0: */
 /*
  * Last Change: 05-Aug-2003.
- * Written By:  Muraoka Taro <koron@tka.att.ne.jp>
+ * Written By:  Muraoka Taro <koron.kaoriya@gmail.com>
  */
 
 #ifndef RCFILE_H

@@ -3,4 +3,4 @@
 # アーキテクチャ依存 (GCC)
 #
 # Last Change:	06-Aug-2003.
-# Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
+# Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>

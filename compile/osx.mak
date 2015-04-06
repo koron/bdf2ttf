@@ -3,4 +3,4 @@
 # アーキテクチャ依存 (Mac OS X)
 #
 # Last Change:	03-Jan-2003.
-# Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
+# Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>

@@ -157,5 +157,5 @@ bdf2ttf フォントコンバートツール 説明書
 
 -------------------------------------------------------------------------------
                   生きる事への強い意志が同時に自分と異なる生命をも尊ぶ心となる
-                                   MURAOKA Taro/村岡太郎 <koron@tka.att.ne.jp>
+                               MURAOKA Taro/村岡太郎 <koron.kaoriya@gmail.com>
  vim:set ts=8 sts=2 sw=2 tw=78 et ft=memo:

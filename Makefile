@@ -3,7 +3,7 @@
 # bdf2ttf
 #
 # Last Change: 23-Sep-2002.
-# Written By:  MURAOKA Taro <koron@tka.att.ne.jp>
+# Written By:  MURAOKA Taro <koron.kaoriya@gmail.com>
 
 default: usage
 

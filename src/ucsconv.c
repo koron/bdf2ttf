@@ -2,7 +2,7 @@
 /*
  * ucsconv.c - Simple encoding converter.
  *
- * Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
+ * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
  * Last Change: 05-Aug-2003.
  */
 

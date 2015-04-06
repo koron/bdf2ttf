@@ -2,7 +2,7 @@
 /*
  * bdf2ttf.cpp - BDF to TTF converter.
  *
- * Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
+ * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
  * Last Change: 12-Aug-2005.
  */
 

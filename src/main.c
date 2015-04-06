@@ -2,8 +2,8 @@
 /*
  * main.c - BDF to TTF converter entry point.
  *
- * Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
- * Last Change: 12-Aug-2005.
+ * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
+ * Last Change: 06-Apr-2015.
  */
 
 #include <stdio.h>

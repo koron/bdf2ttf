@@ -3,7 +3,7 @@
 # デフォルトコンフィギュレーションファイル
 #
 # Last Change:	06-Apr-2015.
-# Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
+# Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
 
 srcdir = ./src/
 objdir = ./src/

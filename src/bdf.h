@@ -2,7 +2,7 @@
 /*
  * bdf.h -
  *
- * Written By:	MURAOKA Taro <koron@tka.att.ne.jp>
+ * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
  * Last Change:	12-Aug-2005.
  */
 #ifndef BDF_H
