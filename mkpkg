@@ -1,0 +1,90 @@
+#!/bin/csh
+# vim:set ts=8 sts=2 sw=2 tw=0:
+#
+# mkpkg tool
+#
+# Last Change: 17-Jan-2003.
+# Written By:  MURAOKA Taro <koron@tka.att.ne.jp>
+
+# Files:
+#   mkpkg.d/NAME, "unknown"
+#   "$1", VERSION, "VERSION"
+#   CVS/Root, mkpkg.d/Root
+#   CVS/Repository, mkpkg.d/Repository
+#   CVS/Revision, mkpkg.d/Revision
+
+##############################################################################
+# Initialize variables
+
+if (-r mkpkg.d/NAME) then
+  set pkgname = `cat mkpkg.d/NAME`
+else
+  set pkgname = 'unknown'
+endif
+
+if ($1 != '') then
+  set pkgver = "$1"
+else if (-r VERSION) then
+  set pkgver = `cat VERSION`
+else
+  set pkgver = 'VERSION'
+endif
+
+if (-r CVS/Root) then
+  set cvsroot = `cat CVS/Root`
+else if (-r mkpkg.d/Root) then
+  set cvsroot = `cat mkpkg.d/Root`
+endif
+
+if (-r CVS/Repository) then
+  set cvsrepository = `cat CVS/Repository`
+else if (-r mkpkg.d/Repository) then
+  set cvsrepository = `cat mkpkg.d/Repository`
+else
+  set cvsrepository = $pkgname
+endif
+
+if (-r CVS/Revision) then
+  set cvsrevision = `cat CVS/Revision`
+else if (-r mkpkg.d/Revision) then
+  set cvsrevision = `cat mkpkg.d/Revision`
+else
+  set cvsrevision = '-D now'
+endif
+
+##############################################################################
+# Build up distribute directory
+
+set pkgdir = "${pkgname}-${pkgver}"
+echo "${pkgdir}: "
+cd ..
+rm -rf $pkgdir
+
+echo -n "  Making package dir..."
+cvs -d $cvsroot -Q export $cvsrevision -d $pkgdir $cvsrepository
+if (-r $pkgdir/mkpkg.d/postbuild) then
+  source $pkgdir/mkpkg.d/postbuild
+endif
+echo "finish"
+
+##############################################################################
+# Archiving
+
+echo -n "  Archiving ..."
+tar cf "${pkgdir}.tar" "$pkgdir"
+echo "finish"
+
+echo -n "  Compressing ..."
+bzip2 -f "${pkgdir}.tar"
+echo "finish"
+
+##############################################################################
+# Open directory of the archive with GUI
+
+echo ""
+rm -rf "$pkgdir"
+if ("$version" =~ *Win*) then
+  start .
+else if ("$version" =~ *darwin*) then
+  open .
+endif

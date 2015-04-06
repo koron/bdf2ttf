@@ -1,0 +1,4 @@
+# vim:set ts=8 sts=2 sw=2 tw=0 ft=csh:
+if (-e bdf2ttf/bdf2ttf.exe) then
+  cp -a bdf2ttf/bdf2ttf.exe "$pkgdir"
+endif
