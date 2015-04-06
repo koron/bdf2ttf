@@ -1,200 +1,161 @@
-bdf2ttf �t�H���g�R���o�[�g�c�[�� ������
+bdf2ttf フォントコンバートツール 説明書
                                                             Since: 21-Aug-2002
                                                                   Version: 1.0
                                                   Author: MURAOKA Taro (KoRoN)
-                                                     Last Change: 12-Aug-2005.
+                                                     Last Change: 06-Apr-2015.
 
 
-����
-  �r�b�g�}�b�v�t�H���g�ł���BDF��TrueType�t�H���g�ɕϊ����邽�߂̃c�[���ł��B
-  �ϊ��ɍۂ��Ă�TrueType�̈�@�\�ł��閄�ߍ��݃r�b�g�}�b�v��p���邽�߁A�ϊ���
-  �����鎞�Ԃ͒Z���A�ϊ���̃t�@�C���T�C�Y�͏������Ȃ�܂��B�������ϊ���̃t�H
-  ���g�𖄂ߍ���BDF�̎w��T�C�Y�ȊO�Ŏg�p�����ꍇ�A��ʓI�ɂ͕\���i���ɖ��
-  �������܂��B
+説明
+  ビットマップフォントであるBDFをTrueTypeフォントに変換するためのツールです。
+  変換に際してはTrueTypeの一機能である埋め込みビットマップを用いるため、変換に
+  かかる時間は短く、変換後のファイルサイズは小さくなります。ただし変換後のフォ
+  ントを埋め込んだBDFの指定サイズ以外で使用した場合、一般的には表示品質に問題
+  が生じます。
 
 
-�g�p�@
-  �R�}���h���C�����玟�̂悤�ȃR�}���h�����s���܂��B
+使用法
+  コマンドラインから次のようなコマンドを実行します。
 
     bdf2ttf [flags] {outname} {info} {infile} [infiles...]
 
   [flags]
-    �ȗ��\�B�ȉ��̃I�v�V�������w��ł��܂��B
-    -b, --bold          �����t�H���g�𐶐����܂��B
-    -i, --italic        �Α̃t�H���g�𐶐����܂��B
-    --no-autoname       -b/i�w�莞�ɁA�����I�ɕ\���t�H���g�����C�������̂���
-                        �����܂��B
-    --no-stylecheck     -b/i�w�莞�ɁA�������`�F�b�N���s���̂�}�����܂��B
+    省略可能。以下のオプションが指定できます。
+    -b, --bold          太字フォントを生成します。
+    -i, --italic        斜体フォントを生成します。
+    --no-autoname       -b/i指定時に、自動的に表示フォント名が修正されるのを回
+                        避します。
+    --no-stylecheck     -b/i指定時に、整合性チェックを行うのを抑制します。
   {outname}
-    �K�{�B�o�̓t�@�C�������w�肵�܂��B��: out.ttf
+    必須。出力ファイル名を指定します。例: out.ttf
   {info}
-    �K�{�B�t�H���g�̖��O�⒘�쌠�\����ݒ肷�邽�߂́A�t�H���g���t�@�C�����w
-    �肵�܂��B�����ɂ��Ă͌�q���܂��B ��: font.ini
+    必須。フォントの名前や著作権表示を設定するための、フォント情報ファイルを指
+    定します。書式については後述します。 例: font.ini
   {infile} [infiles...]
-    �K�{�B���͂ƂȂ�BDF�t�@�C�����w�肵�܂��B�X�y�[�X�ŋ�؂��ĕ����w�肷�邱
-    �Ƃ��ł��܂����A�Œ�1�t�@�C���ȏ���w�肷��K�v������܂��B�����̃t�@�C��
-    ���w�肵�A���قȂ�t�@�C���ɓ��������ɑ΂���O���t���܂܂�Ă���ꍇ�A
-    ����҂̃t�@�C���̂��̂��D�悳��܂��B�قȂ�T�C�Y��BDF���w�肷�邱�Ƃ�
-    �\�ł��B
+    必須。入力となるBDFファイルを指定します。スペースで区切って複数指定するこ
+    ともできますが、最低1ファイル以上を指定する必要があります。複数のファイル
+    を指定し、かつ異なるファイルに同じ文字に対するグリフが含まれている場合、
+    より後者のファイルのものが優先されます。異なるサイズのBDFを指定することも
+    可能です。
 
-  ����: �ϊ��ɂ͕����R�[�h�ϊ��e�[�u�����K�v�ɂȂ�܂��B�ϊ��e�[�u���ɂ��Ă�
-  ��q���܂��B
+  注意: 変換には文字コード変換テーブルが必要になります。変換テーブルについては
+  後述します。
 
-  (�t�H���g���t�@�C������)
-  �t�H���g���t�@�C����UTF-8�G���R�[�f�B���O�ŋL�q����K�v������܂��B�t�H��
-  �g���⒘�쌠�\���ɉp��݂̂��g�p����ꍇ�͓��ɋC�ɂ���K�v�͂���܂��񂪁A��
-  �{����g�p����ꍇ�ɂ͗��ӂ��Ă��������B
+  (フォント情報ファイル書式)
+  フォント情報ファイルはUTF-8エンコーディングで記述する必要があります。フォン
+  ト名や著作権表示に英語のみを使用する場合は特に気にする必要はありませんが、日
+  本語を使用する場合には留意してください。
 
-  �t�@�C����1�s��1�̃L�[�ƒl�̑g�ݍ��킹���L���AINI�t�@�C���ɋ߂��\���ɂȂ�
-  �Ă��܂��B��{�I�ȏ�����:
-      key=value �������� key = value
-  �̌`�ł��B�L�[�ƒl�̒��ɋ󔒕������܂ނ��Ƃ͉\�ł����A�擪�Ɩ����̋󔒂͖�
-  ������܂��B��:
+  ファイルは1行に1つのキーと値の組み合わせを記す、INIファイルに近い構成になっ
+  ています。基本的な書式は:
+      key=value もしくは key = value
+  の形です。キーと値の中に空白文字を含むことは可能ですが、先頭と末尾の空白は無
+  視されます。例:
       greeting practise  =   Hello, World
-          �L�[ = greeting practise
-           �l  = Hello, World
-  �u#�v�Ŏn�܂�s�̓R�����g�Ƃ��Ė�������܂��B
+          キー = greeting practise
+           値  = Hello, World
+  「#」で始まる行はコメントとして無視されます。
 
-  �L���ȃL�[�Ƃ��̈Ӗ��͈ȉ��̂Ƃ���ɂȂ�܂��B
-      Copyright   ���쌠�\��(�p��)
-      Fontname    �t�H���g��(�p��)
-      Version     �t�H���g�o�[�W����
-      Trademark   ���W�\��(�p��)
-      CopyrightCP ���쌠�\��(���{��)
-      FontnameCP  �t�H���g��(���{��)
-      TrademarkCP ���W�\��(���{��)
-      Coresize    ���C���ƂȂ�BDF�t�H���g�̃T�C�Y
-  �L�[��ݒ肵�Ȃ��ꍇ�ɂ́A�e�L�[�Ƃ��f�t�H���g�̒l���g�p����܂��BCoresize��
-  �w�肵�Ȃ����́A�t�H���g�T�C�Y���ő��BDF�ɏ����ꂽ�����t�H���g�쐬�ɗ��p
-  ���܂��B
+  有効なキーとその意味は以下のとおりになります。
+      Copyright   著作権表示(英語)
+      Fontname    フォント名(英語)
+      Version     フォントバージョン
+      Trademark   商標表示(英語)
+      CopyrightCP 著作権表示(日本語)
+      FontnameCP  フォント名(日本語)
+      TrademarkCP 商標表示(日本語)
+      Coresize    メインとなるBDFフォントのサイズ
+  キーを設定しない場合には、各キーともデフォルトの値が使用されます。Coresizeを
+  指定しない時は、フォントサイズが最大のBDFに書かれた情報をフォント作成に利用
+  します。
 
-  Coresize�̓t�H���g�̏c����ȂǊ�{���̎��W�Ɏg���܂��B�c�O�Ȃ���TTF��
-  �́A�T�C�Y�ɉ����ăt�H���g�O���t�̏c�����ς��邱�Ƃ͂ł��܂���B����ɑ΂�
-  ��bdf2ttf�ł͏c����̈قȂ镡����BDF�t�@�C�����w�肷�邱�Ƃ��ł��܂��B�ł���
-  ��bdf2ttf�ɂƂ��Ă͂ǂ�BDF�t�@�C���ɏ����ꂽ�c�����TTF�ɏo�͂���Ηǂ��̂�
-  �킩��܂���B������w�肷��̂�Coresize�ł��BBDF�t�@�C������PIXEL_SIZE��
-  Coresize�Ƃ��Ďw��ł���l�ł��BPIXEL_SIZE�������ꍇ�ɂ�SIZE�̑�1�p�����[�^
-  �����p����܂��B
+  Coresizeはフォントの縦横比など基本情報の収集に使われます。残念ながらTTFで
+  は、サイズに応じてフォントグリフの縦横比を変えることはできません。それに対し
+  てbdf2ttfでは縦横比の異なる複数のBDFファイルを指定することができます。ですか
+  らbdf2ttfにとってはどのBDFファイルに書かれた縦横比をTTFに出力すれば良いのか
+  わかりません。それを指定するのがCoresizeです。BDFファイル内のPIXEL_SIZEが
+  Coresizeとして指定できる値です。PIXEL_SIZEが無い場合にはSIZEの第1パラメータ
+  が流用されます。
 
-  �Ⴆ��M+�t�H���g�ł�10x11 (Coresize=10)��12x13 (Coresize=13)���ݒ�ł��܂��B
-  �ݒ肵�Ȃ��ƍő�́A���̏ꍇ��13���g�p����܂��BM+�̗�ł͏c����̈Ⴂ�͏���
-  ���̂ŁA��ʏ�ɔ��f�����قǂł͂Ȃ����ɂȂ�܂���B�������c���䂪�ɒ[��
-  �قȂ�t�H���g�𖄂ߍ��ގ��ɂ�Coresize�̐ݒ肪�����Ă���ł��傤�B
+  例えばM+フォントでは10x11 (Coresize=10)と12x13 (Coresize=13)が設定できます。
+  設定しないと最大の、この場合は13が使用されます。M+の例では縦横比の違いは小さ
+  いので、画面上に反映されるほどではなく問題になりません。しかし縦横比が極端に
+  異なるフォントを埋め込む時にはCoresizeの設定が生きてくるでしょう。
 
-  �t�H���g���t�@�C���̃T���v����sample.ini���Q�Ƃ��Ă��������B
+  フォント情報ファイルのサンプルはsample.iniを参照してください。
 
-  (�����R�[�h�ϊ��e�[�u��)
-  TTF�t�@�C�����o�͂���ۂɂ́A�����I�ɕ����R�[�h��UNICODE�ɂ��Ă��܂��B���
-  BDF�ł͓��{��ɂ��Ă�JIS����ʓI�ł����A�p���Ȃǂ�ISO-8859�V���[�Y�𗘗p��
-  �Ă�����̂�����AUNICODE�֕ϊ�����K�v������܂��B
+  (文字コード変換テーブル)
+  TTFファイルを出力する際には、内部的に文字コードをUNICODEにしています。一方
+  BDFでは日本語についてはJISが一般的ですが、英字などはISO-8859シリーズを利用し
+  ているものもあり、UNICODEへ変換する必要があります。
 
-  ���̂���bdf2ttf�ł�unicode.org���z�z���Ă��镶���R�[�h�Ή��\�t�@�C���𗘗p�E
-  ���H���āA�ϊ��̓x�ɕ����R�[�h�ϊ��e�[�u�����\�z������Ŏ��ۂ̕ϊ����s�Ȃ���
-  ���܂��B���̑Ή��\�t�@�C���Ƃ��āA�ʏ�̓J�����g�f�B���N�g����
-      Windows�\�L:  .\ucstable.d\*.TXT
-      UNIX�\�L:     ./ucstable.d/*.TXT
-  ����������܂��B���ϐ�UCSTABLEDIR���w�肳��Ă���ꍇ�ɂ�
-      Windows�\�L:  %UCSTABLEDIR%/*.TXT
-      UNIX�\�L:     $UCSTABLEDIR\*.TXT
-  ���������܂��B
+  そのためbdf2ttfではunicode.orgが配布している文字コード対応表ファイルを利用・
+  加工して、変換の度に文字コード変換テーブルを構築した上で実際の変換を行なって
+  います。その対応表ファイルとして、通常はカレントディレクトリの
+      Windows表記:  .\ucstable.d\*.TXT
+      UNIX表記:     ./ucstable.d/*.TXT
+  が検索されます。環境変数UCSTABLEDIRが指定されている場合には
+      Windows表記:  %UCSTABLEDIR%/*.TXT
+      UNIX表記:     $UCSTABLEDIR\*.TXT
+  を検索します。
 
-  �g�p����t�@�C���͔z�z�A�[�J�C�u��ucstable.d/�ȉ��Ɍ�����悤�ɁA�G���R�[
-  �h���̐擪�́uISO-�v�͍폜���A�A���t�@�x�b�g�͑啶���ɕϊ��A���̏�Ŋg���q��
-  �u.TXT�v�������́u.WIN.TXT�v��t����A�Ƃ������̋K���Ńt�@�C���������肵��
-  ���܂��B���m�̃G���R�[�h�𗘗p����ꍇ�ɂ́A�����̏���p���ĕϊ��e�[�u��
-  ��ǉ����邱�Ƃ��\�ł��B
+  使用するファイルは配布アーカイブのucstable.d/以下に見られるように、エンコー
+  ド名の先頭の「ISO-」は削除し、アルファベットは大文字に変換、その上で拡張子に
+  「.TXT」もしくは「.WIN.TXT」を付ける、という一定の規則でファイル名を決定して
+  います。未知のエンコードを利用する場合には、これらの情報を用いて変換テーブル
+  を追加することが可能です。
 
-  (�����E�Α̃t�H���g)
-  �ʏ�A�����E�Α̂̃t�H���g�͌ʂ�BDF��p�ӂ��A-b/i�t���O���w�肵�Ă��ꂼ��
-  �ɂ��Ė��ߍ��݃t�H���g�t�@�C�����쐬����K�v������܂��B�����t�H���g�t�@�C
-  �����񋟂���Ȃ��t�H���g�́AOS�������I�ɑ����O���t�𐶐�����̂ŕ\���͉\��
-  ���B�������Α̃t�H���g�͐�������Ȃ��̂ŕ\���ł��܂���B
+  (太字・斜体フォント)
+  通常、太字・斜体のフォントは個別にBDFを用意し、-b/iフラグを指定してそれぞれ
+  について埋め込みフォントファイルを作成する必要があります。太字フォントファイ
+  ルが提供されないフォントは、OSが自動的に太字グリフを生成するので表示は可能で
+  す。しかし斜体フォントは生成されないので表示できません。
 
-  ���z�I�ȉ������@�͎Α̃t�H���g�t�@�C����񋟂��邱�Ƃł����A���P�̕��@�Ƃ���
-  �ʏ�O���t���Α̃O���t�Ƃ��ċ����I�ɑ�֗��p���邱�Ƃ��ł��܂��B���̏ꍇ�ɂ�
-  �ʏ�O���t�̃R���o�[�g���ɁA�ȉ���3�̃I�v�V������ǉ��w�肵�Ă��������B
+  理想的な解決方法は斜体フォントファイルを提供することですが、次善の方法として
+  通常グリフを斜体グリフとして強制的に代替利用することができます。その場合には
+  通常グリフのコンバート時に、以下の3つのオプションを追加指定してください。
     --italic
-    --no-autoname   : -i�w�莞�ɁA�t�H���g���������␳�����̂�h��
-    --no-stylecheck : -i�w�莞�ɁA�ʏ핶���Ƃ��Ă����p�\�ɂ���
+    --no-autoname   : -i指定時に、フォント名が自動補正されるのを防ぐ
+    --no-stylecheck : -i指定時に、通常文字としても利用可能にする
 
 
-�\�[�X�R�[�h
-  bdf2ttf�̃\�[�X�R�[�h�̓f�B���N�g��src�ȉ���available�ł��B
+ソースコード
+  bdf2ttfのソースコードはディレクトリsrc以下にavailableです。
 
 
-���p��������
-  �e�p��̈Ӗ��͈ȉ��̂悤�ɒ�`���܂��B
-      �{�\�t�g�E�F�A    : bdf2ttf (�\�[�X�R�[�h���܂�)
-      �Ǘ���            : �{�\�t�g�E�F�A�����L����l(�쐬�ҁA���쌠��)
-                          (�{�����쐬�� �������Y <koron@tka.att.ne.jp>)
-      ���p��            : �{�\�t�g�E�F�A�𗘗p����E�����l
-      ��O��            : �����ҋy�ї��p�҂ɊY�����Ȃ���O��
-                          (����BDF�t�H���g�̍쐬�҂��܂�)
+フォントの著作権
+  bdf2ttfで変換したTrueTypeフォントの諸権利(利用許諾条件及び著作権等)は、オリ
+  ジナルとなったBDFフォントに従います。つまり再配布が禁止されているBDFフォント
+  を、bdf2ttfを用いてTrueTypeフォントへ変換した場合、そのTrueTypeフォントを第
+  三者へ再配布することはできません。
 
-  �{�\�t�g�E�F�A�́A�ȉ��̏������ɓ��ӂ��ꂽ���̂ݗ��p��������܂��B���ӂł�
-  �Ȃ��ꍇ�͖{�\�t�g�E�F�A�̗��p�𒆎~���A�֘A�t�@�C���𗘗p�҂̋L���}�̂����
-  �����Ă��������B
-
-  (�Ǘ��҂ɑ΂������)
-  �Ǘ��҂́A�{��������ύX���錠����L���܂��B
-
-  �Ǘ��҂́A�{�\�t�g�E�F�A�Ɋւ��Ĉȉ��̌�����L���܂��B
-            - �{�\�t�g�E�F�A�����ς��錠��
-            - �{�\�t�g�E�F�A��z�z���錠��
-            - �{�\�t�g�E�F�A�̗��p�������錠��
-            - �����̈ꕔ�܂��͑S�������n���錠��
-
-  �Ǘ��҂́A�{�\�t�g�E�F�A�̕s����C������`����L���܂��B
-
-  �Ǘ��҂́A���p�҂��������܂��͎󂯂����Q�ɂ��ĖƐӂ���܂��B
-
-  (���p�҂ɑ΂������)
-  ���p�҂́A�{�\�t�g�E�F�A�𗘗p����ۂɈȉ��̋`����L���܂��B
-            - �ʓr��߂�Ή��K��Ɋ�Â��Ή��̎x�����`��
-            - �Ǘ��҂̌�����ی삷��`��
-            - ��O�҂̌�����ی삷��`��
-
-  ���p�҂́A���̏������ɖ������Ȃ�����A�{�\�t�g�E�F�A��������ړI�ŗ��p����
-            ������L���܂��B
-
-  (�Ή��K��)
-  �{�\�t�g�E�F�A�̗��p�Ή��͈ȉ��̂悤�ɒ�߂܂��B
-            - �� 0�~
-
-  (�ȏ�)
-  �������ɍ��ӂł��Ȃ��ꍇ�͖{�\�t�g�E�F�A�̗��p�𒆎~���Ă��������B
+  bdf2ttfの管理者は、bdf2ttfを用いて変換・作成したTrueTypeフォントについては、
+  一切の権利と責任を有しません。
 
 
-�t�H���g�̒��쌠
-  bdf2ttf�ŕϊ�����TrueType�t�H���g�̏�����(���p���������y�ђ��쌠��)�́A�I��
-  �W�i���ƂȂ���BDF�t�H���g�ɏ]���܂��B�܂�Ĕz�z���֎~����Ă���BDF�t�H���g
-  ���Abdf2ttf��p����TrueType�t�H���g�֕ϊ������ꍇ�A����TrueType�t�H���g���
-  �O�҂֍Ĕz�z���邱�Ƃ͂ł��܂���B
-
-  bdf2ttf�̊Ǘ��҂́Abdf2ttf��p���ĕϊ��E�쐬����TrueType�t�H���g�ɂ��ẮA
-  ��؂̌����ƐӔC��L���܂���B
-
-
-�X�V����
-  �� 12-Aug-2005 (2.0)
-    �X�^�C���`�F�b�N�𖳌�������I�v�V������ǉ�
-    �Α̃t�H���g�̃T�C�Y���Y��������C��
-    �����ƎΑ̃t�H���g�ɑΉ�
-    �ϊ����������t�@�N�^�����O
-    bdf2_t�̓���: �����̃T�C�Y�̃t�H���g�𖄂ߍ��߂�悤�ɕύX
-    �t�H���g���ɓ��{����g���Ȃ����Ƃ�����o�O���C��
-  �� 08-Feb-2003 (1.0.005)
-    (1.0.006)compile/config_default.mk��ǉ�
-    (1.0.005)mkpkg�������ւ�
-    (1.0.004)MacOSX�pTTF���쐬���邽�߂̃e�X�g
-    (1.0.003)MacOSX�p��Makefile��ǉ�
-    (1.0.002)JISX0208.WIN.TXT��u22be��u22bf�ɏC��
-    (1.0.001)bloc�y��bdat���o�͂���悤�ɏC��
-  �� 23-Aug-2002 (1.0)
-    ���J
+更新履歴
+  ● 06-Apr-2015 (2.X)
+    ライセンスの変更
+    連絡先メールアドレスの変更
+    日本語のテキストファイルをCP932からUTF-8へ変換
+  ● 12-Aug-2005 (2.0)
+    スタイルチェックを無効化するオプションを追加
+    斜体フォントのサイズがズレる問題を修正
+    太字と斜体フォントに対応
+    変換部分をリファクタリング
+    bdf2_tの導入: 複数のサイズのフォントを埋め込めるように変更
+    フォント名に日本語を使えないことがあるバグを修正
+  ● 08-Feb-2003 (1.0.005)
+    (1.0.006)compile/config_default.mkを追加
+    (1.0.005)mkpkgを差し替え
+    (1.0.004)MacOSX用TTFを作成するためのテスト
+    (1.0.003)MacOSX用のMakefileを追加
+    (1.0.002)JISX0208.WIN.TXTのu22beをu22bfに修正
+    (1.0.001)bloc及びbdatを出力するように修正
+  ● 23-Aug-2002 (1.0)
+    公開
 
 
 -------------------------------------------------------------------------------
-                  �����鎖�ւ̋����ӎu�������Ɏ����ƈقȂ鐶���������ԐS�ƂȂ�
-                                   MURAOKA Taro/�������Y <koron@tka.att.ne.jp>
+                  生きる事への強い意志が同時に自分と異なる生命をも尊ぶ心となる
+                                   MURAOKA Taro/村岡太郎 <koron@tka.att.ne.jp>
  vim:set ts=8 sts=2 sw=2 tw=78 et ft=memo:

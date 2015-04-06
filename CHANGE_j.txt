@@ -1,187 +1,187 @@
-�ύX��ƃ���
-                                                     Last Change: 12-Aug-2005.
+変更作業メモ
+                                                     Last Change: 06-Apr-2015.
 
-�� 12-Aug-2005 (2.0)
-�� 12-Aug-2005
-  �X�^�C���̐������`�F�b�N�A�X�^�C���ɔ�������і��O�̎����C���𖳌����ł����
-  ���ɂ����B����ɂ�苭���I�ɎΑ̃t���O�𗧂ĂāA�W�����̂��Α̂Ƃ��đ�p�ł�
-  ��悤�ɂȂ�B
+■ 12-Aug-2005 (2.0)
+○ 12-Aug-2005
+  スタイルの整合性チェック、スタイルに伴うおよび名前の自動修正を無効化できるよ
+  うにした。これにより強制的に斜体フラグを立てて、標準書体を斜体として代用でき
+  るようになる。
   - src/bdf.h
   - src/bdf2ttf.cpp
   - src/main.c
-�� 09-Oct-2003
+○ 09-Oct-2003
   - src/bdf.c
   - src/bdf.h
   - src/bdf2ttf.cpp
   - src/main.c
-    �Α̃t�H���g�̃T�C�Y���Y��������C��
-�� 08-Oct-2003
+    斜体フォントのサイズがズレる問題を修正
+○ 08-Oct-2003
   - tools/bdf2bit.pl
   - tools/bit2bdf.pl
-    BDF���O���t�B�J���ɕϊ��E�t�ϊ����邽�߂̊ȈՃc�[��
+    BDFをグラフィカルに変換・逆変換するための簡易ツール
   - ucstable.d/JISX0213-1.TXT
   - ucstable.d/JISX0213-1.WIN.TXT
   - ucstable.d/JISX0213-2.TXT
-    JISX0213�Ή��p�f�[�^�t�@�C��
+    JISX0213対応用データファイル
   - src/bdf.c
-    JISX0213�Ή�
-    �C���f���g�C��
-    verbose���[�h�ǉ�
+    JISX0213対応
+    インデント修正
+    verboseモード追加
   - src/bdf.h
-    verbose���[�h�ǉ�
+    verboseモード追加
   - src/bdf2ttf.cpp
-    TRACE()�̖�����
+    TRACE()の無効化
   - src/main.c
-    ���������̃o�O�C��
-    verbose���[�h�ǉ�
+    引数処理のバグ修正
+    verboseモード追加
 
-�� 07-Oct-2003
+○ 07-Oct-2003
   - src/main.c
   - src/bdf2ttf.cpp
   - src/bdf.h
-    �����y�юΑ̃t�H���g�ɑΉ�
-�� 09-Aug-2003
+    太字及び斜体フォントに対応
+○ 09-Aug-2003
   - src/bdf.c
-    pixel_size�̗��p�͈͂𐧌���size�x�[�X��
+    pixel_sizeの利用範囲を制限→sizeベースに
   - src/bdf.h
-    has_multicell�̓���
+    has_multicellの導入
   - src/bdf2ttf.cpp
-    debug.h���C���N���[�h
-    �c����v�Z�����t�@�N�^�����O
+    debug.hをインクルード
+    縦横比計算をリファクタリング
   - src/depend.mak
-    bdf2ttf.cpp�̈ˑ��֌W��debug.h��ǉ�
-�� 06-Aug-2003
+    bdf2ttf.cppの依存関係にdebug.hを追加
+○ 06-Aug-2003
   - src/bdf.c
-    �O���t�̕��Z�����胋�[�`��������
+    グリフの幅セル判定ルーチンを改良
   - src/main.c
-    �A�Z���g�̐ݒ���@���C��
+    アセントの設定方法を修正
   - compile/gcc.mak
   - compile/Make_gcc.mak
-    GCC���т�CC�����ł̃R���p�C���p�t�@�C����ǉ�
+    GCC並びにCC環境下でのコンパイル用ファイルを追加
   - README_j.txt
-    Coresize�ɂ��Ă̐�����ǉ�
+    Coresizeについての説明を追加
 
-�� 05-Aug-2003
-  Version 2.0�̋@�\�J�������B�ȍ~�̓R�[�h�����ƃo�O�t�B�b�N�X�A����Ƀh�L����
-  ���g�쐬��ƁB
+○ 05-Aug-2003
+  Version 2.0の機能開発完了。以降はコード整理とバグフィックス、それにドキュメ
+  ント作成作業。
   - src/bdf.c
-    bdf2_t�̃f�o�b�O
-    �V�K4���\�b�h��ǉ�
+    bdf2_tのデバッグ
+    新規4メソッドを追加
   - src/bdf.h
-    �V�K4���\�b�h�̐錾��ǉ�
+    新規4メソッドの宣言を追加
   - src/bdf2ttf.cpp
-    bdf2_t�Ή�
-    �璷�ȕϐ��A�֐����폜
+    bdf2_t対応
+    冗長な変数、関数を削除
   - src/bdf2ttf.h
-    �璷�ȕϐ��A�֐��̐錾���폜
+    冗長な変数、関数の宣言を削除
   - src/depend.mak
-    �ˑ��֌W�̍X�V
+    依存関係の更新
   - src/main.c
-    �s�v�Ȋ֐��̐���
+    不要な関数の整理
   - src/rcfile.c
-    �X�^�C���̒���
+    スタイルの調整
   - src/rcfile.h
-    �s�ő咷���O������ύX�ł���悤�ɏC��
+    行最大長を外部から変更できるように修正
   - src/ucsconv.c
-    �w�b�_�R�����g�ǉ�
+    ヘッダコメント追加
   - src/ucsconv.h
-    �w�b�_�R�����g�ǉ�
+    ヘッダコメント追加
 
-�� 04-Aug-2003
-  bdf2_t�ւ̈ڍs
+○ 04-Aug-2003
+  bdf2_tへの移行
   - src/bdf2ttf.cpp
-    �萔��define��
-    MIN()�}�N�����`
-    �f�[�^�\���̃T�C�Y��萔��
-    �O���[�o���X�R�[�v�����ϐ�����ύX
-    �f�[�^�\���\�z�p�֐����쐬
+    定数をdefine化
+    MIN()マクロを定義
+    データ構造のサイズを定数化
+    グローバルスコープを持つ変数名を変更
+    データ構造構築用関数を作成
   - src/bdf2ttf.h
-    �O���[�o���X�R�[�v�����ϐ�����ύX
+    グローバルスコープを持つ変数名を変更
   - src/main.c
-    bdf2�pmain()�̎�����ǉ�
+    bdf2用main()の実装を追加
 
-�� 03-Aug-2003
-  bdf2_t�ւ̈ڍs����
+○ 03-Aug-2003
+  bdf2_tへの移行準備
   - src/main.c (new)
-    �v���O�����̃G���g���|�C���g�����𔲂��o��
+    プログラムのエントリポイントだけを抜き出し
   - src/bdf2ttf.h (new)
-    �G���g���|�C���g�����o���ɔ����A�ϐ��A�֐��̐錾
+    エントリポイント抜き出しに伴う、変数、関数の宣言
   - src/debug.h (new)
-    �f�o�b�O�Ɏg�p����TRACE()��錾
+    デバッグに使用するTRACE()を宣言
   - src/bdf.c
-    �V�����T�C�Y�̃t�H���g���ǉ����ꂽ�ۂɃf�o�b�O���b�Z�[�W��\��
+    新しいサイズのフォントが追加された際にデバッグメッセージを表示
   - src/bdf2ttf.cpp
-    �G���g���|�C���g�𔲂��o���ɔ��������
-    �O���[�o���ϐ�bdf��s_bdf�ɖ��O�ύX
-    ���ߍ��݃r�b�g�}�b�v�����������}���`���Ɍ����Ċ֐��֕���
+    エントリポイントを抜き出しに伴う諸作業
+    グローバル変数bdfをs_bdfに名前変更
+    埋め込みビットマップ生成部分をマルチ化に向けて関数へ分離
   - src/depend.mak
-    �V�t�@�C���̈ˑ��֌W��ǉ�
+    新ファイルの依存関係を追加
 
-�� 29-Jul-2003
-  �ǐՒ����Bisspace(0xffffffef)����0��Ԃ��Ă����Bunsigned char*���g���悤�ɂ�
-  �Ė�������Bisspace()��is_whitespace()�Ń��b�s���O�B�Ǝ��R�[�h��#if�ŕۑ�
+○ 29-Jul-2003
+  追跡調査。isspace(0xffffffef)が非0を返していた。unsigned char*を使うようにし
+  て問題を回避。isspace()はis_whitespace()でラッピング。独自コードは#ifで保存
   - src/rcfile.c
-    is_whitespace()��isspace()���ĂԂ悤�ɕύX
-    �ǂݍ��ݏ�����char*��unsigned char*�֕ύX
+    is_whitespace()でisspace()を呼ぶように変更
+    読み込み処理のchar*をunsigned char*へ変更
 
-�� 28-Jul-2003
-  ini�t�@�C���ɔ�ASCII�����Ŏn�܂�value���L�q�����ꍇ�A�擪��1�o�C�g�������ĕ�
-  �����j�󂳂�Ă��܂��Ă����Bisspace()��0xef�ɂ��Ĕ�0��Ԃ��Ă������Ƃ�����
-  �ŁA�Ǝ���is_whitespace()���`���邱�Ƃŉ���B
+○ 28-Jul-2003
+  iniファイルに非ASCII文字で始まるvalueを記述した場合、先頭の1バイトが落ちて文
+  字が破壊されてしまっていた。isspace()が0xefについて非0を返していたことが原因
+  で、独自のis_whitespace()を定義することで回避。
   - src/bdf2ttf.cpp
-    FontnameCP��HEX�_���v�R�[�h��ǉ�
+    FontnameCPのHEXダンプコードを追加
   - src/rcfile.c
-    is_whitespace()��ǉ��Bisspace()��S�Ēu�����B
+    is_whitespace()を追加。isspace()を全て置換え。
 
-�� 11-Jul-2003
+○ 11-Jul-2003
   - src/bdf2ttf.cpp
-    UnicodeRange�𖳗�����߂Ă݂�����B
+    UnicodeRangeを無理矢理埋めてみる実験。
 
-�� 07-Jun-2003
+○ 07-Jun-2003
   - src/bdf.c
-    BDF2�C���^�[�t�F�[�X�̎���
+    BDF2インターフェースの実装
 
-�� 06-Jun-2003
+○ 06-Jun-2003
   - compile/Make_mvc.mak
-    �f�o�b�O�p�t�@�C�����폜����R�}���h��distclean�ɒǉ�
+    デバッグ用ファイルを削除するコマンドをdistcleanに追加
   - compile/depend.mak
-    tags�����ꏊ�̕ύX
+    tagsを作る場所の変更
   - src/infont.c
-    �擪�փt�@�C���T�v�̃R�����g��ǉ�
+    先頭へファイル概要のコメントを追加
   - src/bdf2ttf.cpp
-    �擪�փt�@�C���T�v�̃R�����g��ǉ�
-    ���쌠���A�o�[�W�����ԍ��ύX
-    �R�����g���p��
-    �ϊ����\���R�[�h��#ifdef USE_SHOWFONTINFO�̑Ώۂ�
-    src/bdf.c:bdf_load()�̖߂�l�̕ύX�ɑΉ�
+    先頭へファイル概要のコメントを追加
+    著作権情報、バージョン番号変更
+    コメントを英訳
+    変換情報表示コードを#ifdef USE_SHOWFONTINFOの対象に
+    src/bdf.c:bdf_load()の戻り値の変更に対応
   - src/bdf.h
-    �擪�փt�@�C���T�v�̃R�����g��ǉ�
-    BDF2�C���^�[�t�F�[�X�̒�`��ǉ�
+    先頭へファイル概要のコメントを追加
+    BDF2インターフェースの定義を追加
   - src/bdf.c
-    �擪�փt�@�C���T�v�̃R�����g��ǉ�
-    bdf_load():�قȂ�T�C�Y�̃t�H���g���[�h���G���[�ɕύX
-    BDF2�C���^�[�t�F�[�X�̎���
+    先頭へファイル概要のコメントを追加
+    bdf_load():異なるサイズのフォントロードをエラーに変更
+    BDF2インターフェースの実装
 
-�� compile/config_default.mk��ǉ�
-  config.mk�̃o�b�N�A�b�v�p�ɒǉ� 08-Feb-2003
+○ compile/config_default.mkを追加
+  config.mkのバックアップ用に追加 08-Feb-2003
 
-�� mkpkg�������ւ�
-  Chalice�ŗ��p���Ă���V����mkpkg�V�X�e���ɍ����ւ� 08-Feb-2003
+○ mkpkgを差し替え
+  Chaliceで利用している新しいmkpkgシステムに差し替え 08-Feb-2003
 
-�� MacOSX�pTTF���쐬���邽�߂̃e�X�g
-  �������������B�S�p�����̕`�掞�ɔ��p���ł�������ꂸ�A���ʕ������d�Ȃ��ĕ`��
-  ����Ă��܂��B 06-Feb-2003
+○ MacOSX用TTFを作成するためのテスト
+  未だ成功せず。全角文字の描画時に半角幅でしか送られず、結果文字が重なって描画
+  されてしまう。 06-Feb-2003
 
-�� MacOSX�p��Makefile��ǉ�
+○ MacOSX用のMakefileを追加
   make osx 03-Jan-2003
 
-�� JISX0208.WIN.TXT��u22be��u22bf�ɏC��
-  �������\������Ȃ������B 10-Dec-2002
+○ JISX0208.WIN.TXTのu22beをu22bfに修正
+  文字が表示されなかった。 10-Dec-2002
 
-�� bloc�y��bdat���o�͂���悤�ɏC��
-  Mac�p�ɕK�v�B 23-Sep-2002
+○ bloc及びbdatを出力するように修正
+  Mac用に必要。 23-Sep-2002
 
-�� 23-Aug-2002 (1.0)
-�� ���J
+■ 23-Aug-2002 (1.0)
+○ 公開
 
  vim:set ts=8 sts=2 sw=2 tw=78 et ft=memo:

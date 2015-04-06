@@ -1,0 +1,15 @@
+# Font file conveter BDF to TTF
+
+bdf2ttf converts font files in BDF which is bitmap font to a TrueType Font
+(TTF) format file.  bdf2ttf use TTF's embedded bitmap font feature for
+conversion.  So conversion time is very short, and result TTF will be very
+small.  But embedded bitmap font is side depended, when you it use with
+different size, you would get dusty rendering.
+
+## Usage
+
+See README\_j.txt (Japanese)
+
+## License
+
+Distributed under MIT License.  See LICENSE file for details.
