@@ -3,7 +3,7 @@
  * bdf2ttf.cpp - BDF to TTF converter.
  *
  * Written By:	MURAOKA Taro <koron.kaoriya@gmail.com>
- * Last Change: 12-Aug-2005.
+ * Last Change: 03-Jul-2016.
  */
 
 //#define USE_CMAP_3RD_TABLE 1
@@ -57,7 +57,7 @@
 // Total table number
 #define NUM_TABLE 19
 
-char *ttfTag[] = {
+const char *ttfTag[] = {
     // Required tables.
     "cmap", "head", "hhea", "hmtx", "maxp", "name", "OS/2", "post",
     // for Vector glyph
@@ -81,26 +81,26 @@ unsigned char prep_prog[8] = {
    0x18, // round to grid
 };
 
-static const size_t	SIZE_BITMAPSIZETABLE = (sizeof(long) * 4
+static const size_t	SIZE_BITMAPSIZETABLE = (4/*sizeof(long)*/ * 4
 	+ sizeof(char[12]) * 2 + sizeof(short) * 2 + sizeof(char) * 4);
 static const size_t	SIZE_INDEXSUBTABLEARRAY		= 8;
 static const int	EMMAX				= 1024;
 static const int	MAX_SCALE			= 100;
 
-static char* STYLE_REGULAR	= "Regular";
-static char* STYLE_BOLD		= "Bold";
-static char* STYLE_ITALIC	= "Italic";
-static char* STYLE_BOLDITALIC	= "Bold Italic";
+static const char* STYLE_REGULAR	= "Regular";
+static const char* STYLE_BOLD		= "Bold";
+static const char* STYLE_ITALIC		= "Italic";
+static const char* STYLE_BOLDITALIC	= "Bold Italic";
 
-char *g_copyright	= COPYRIGHT;
-char *g_copyright_cp	= NULL;
-char *g_fontname	= NULL;
-char *g_fontname_cp	= NULL;
-char *g_style		= STYLE_REGULAR;
-char *g_version		= VERSION;
-char *g_version_cp	= NULL;
-char *g_trademark	= TRADEMARK;
-char *g_trademark_cp	= NULL;
+const char *g_copyright		= COPYRIGHT;
+const char *g_copyright_cp	= NULL;
+const char *g_fontname		= NULL;
+const char *g_fontname_cp	= NULL;
+const char *g_style		= STYLE_REGULAR;
+const char *g_version		= VERSION;
+const char *g_version_cp	= NULL;
+const char *g_trademark		= TRADEMARK;
+const char *g_trademark_cp	= NULL;
 
     int
 emCalc(int pix, int base)
@@ -122,7 +122,7 @@ addbytes(bigfirst* p, unsigned char* buf, int len)
 }
 
     static void
-name_addstr(table* t, bigfirst* p, char* buf, short platformID, short encodingID, short languageID, short nameID)
+name_addstr(table* t, bigfirst* p, const char* buf, short platformID, short encodingID, short languageID, short nameID)
 {
     int len = strlen(buf);
     t->addShort(platformID);
@@ -195,10 +195,10 @@ utf8ptr_to_ucs4(unsigned char* ptr, int* len)
 }
 
     wchar_t*
-into_unicode(int *outlen, char* buf)
+into_unicode(int *outlen, const char* buf)
 {
     int unilen = 0;
-    char *p;
+    const char *p;
     wchar_t *pout;
 
     for (p = buf; *p; ++unilen)
@@ -221,7 +221,7 @@ into_unicode(int *outlen, char* buf)
 }
 
     static void
-name_addunistr(table* t, bigfirst* p, char* buf, short platformID, short encodingID, short languageID, short nameID)
+name_addunistr(table* t, bigfirst* p, const char* buf, short platformID, short encodingID, short languageID, short nameID)
 {
     int len = strlen(buf);
 
@@ -524,7 +524,7 @@ generate_eb_location(bdf2_t* font, bdf_t* bdf,
 	int n_plane, int n_subtbl, int width, int height, int origsize)
 {
     // bitmapSizeTable
-    eblc->addLong(sizeof(long) * 2 + SIZE_BITMAPSIZETABLE * n_plane
+    eblc->addLong(4/*sizeof(long)*/ * 2 + SIZE_BITMAPSIZETABLE * n_plane
 	    + starray->getLen());
 					// indexSubTableArrayOffset
     eblc->addLong(subtable->getLen());	// indexTableSize
@@ -741,7 +741,7 @@ generate_CMAP(bdf2_t* font)
     int numtbl = 2;
 #endif
     int offset = sizeof(short) * 2
-	+ (sizeof(short) * 2 + sizeof(long)) * numtbl;
+	+ (sizeof(short) * 2 + 4/*sizeof(long)*/) * numtbl;
 
     table *cmap = &ttfTbl[CMAP];
     cmap->addShort(0);		/* Version */
