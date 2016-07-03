@@ -1,3 +1,5 @@
+DEFS   = -D_CRT_SECURE_NO_WARNINGS
+
 !ifdef DEBUG
 CFLAGS = -nologo -W3 -Zi -DDEBUG=1
 LFLAGS = -nologo -Zi
