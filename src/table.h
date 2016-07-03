@@ -12,7 +12,7 @@ class array
 	bool addByte(unsigned char b);
 	void addArray(array& ary);
 	void addArray(array* ary) { addArray(*ary); };
-	void addString(char* str);
+	void addString(const char* str);
 	bool insert(unsigned int s, unsigned char b);
 	short set(unsigned int s, unsigned char c);
 	void remove(unsigned int s);

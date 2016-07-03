@@ -14,7 +14,7 @@ bigfirst::addString(wchar_t* str)
 }
 
     void
-array::addString(char* str)
+array::addString(const char* str)
 {
     while (*str)
 	addByte(*str++);
