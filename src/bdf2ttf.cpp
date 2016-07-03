@@ -81,7 +81,7 @@ unsigned char prep_prog[8] = {
    0x18, // round to grid
 };
 
-static const size_t	SIZE_BITMAPSIZETABLE = (sizeof(long) * 4
+static const size_t	SIZE_BITMAPSIZETABLE = (4/*sizeof(long)*/ * 4
 	+ sizeof(char[12]) * 2 + sizeof(short) * 2 + sizeof(char) * 4);
 static const size_t	SIZE_INDEXSUBTABLEARRAY		= 8;
 static const int	EMMAX				= 1024;
@@ -524,7 +524,7 @@ generate_eb_location(bdf2_t* font, bdf_t* bdf,
 	int n_plane, int n_subtbl, int width, int height, int origsize)
 {
     // bitmapSizeTable
-    eblc->addLong(sizeof(long) * 2 + SIZE_BITMAPSIZETABLE * n_plane
+    eblc->addLong(4/*sizeof(long)*/ * 2 + SIZE_BITMAPSIZETABLE * n_plane
 	    + starray->getLen());
 					// indexSubTableArrayOffset
     eblc->addLong(subtable->getLen());	// indexTableSize
@@ -741,7 +741,7 @@ generate_CMAP(bdf2_t* font)
     int numtbl = 2;
 #endif
     int offset = sizeof(short) * 2
-	+ (sizeof(short) * 2 + sizeof(long)) * numtbl;
+	+ (sizeof(short) * 2 + 4/*sizeof(long)*/) * numtbl;
 
     table *cmap = &ttfTbl[CMAP];
     cmap->addShort(0);		/* Version */

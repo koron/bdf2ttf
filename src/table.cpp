@@ -140,9 +140,10 @@ table::calcSum()
     while (t < eot) {
 	for (l = i = 0; i < 4; i++) {
 	    c = (t < eot) ? *t++ : 0;
-	    l = (l >> 8) + (c << 24);
+	    l = ((l >> 8) & 0xffffff) + (c << 24);
 	}
 	chk += l;
+	chk &= 0xffffffff;
     }
     return chk;
 }
