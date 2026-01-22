@@ -57,7 +57,7 @@ static width_table_t cell_width_table[] = {
 
 static int	bdf_load_fh(bdf_t* font, FILE* fp);
 static void	count_validglyph(bdf_t* font);
-static bdf_glyph_t*	glyph_open();
+static bdf_glyph_t*	glyph_open(int width, int height);
 static void		glyph_close(bdf_glyph_t *glyph);
 static char*	iscmd(char* target, char* keyword);
 static int	atoi_next(char** str);
